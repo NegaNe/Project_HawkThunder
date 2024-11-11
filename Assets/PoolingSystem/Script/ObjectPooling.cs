@@ -8,7 +8,6 @@ public class ObjectPooling : MonoBehaviour
 
     private List<GameObject> objectPoolList = new List<GameObject>();
     [SerializeField] GameObject objectToPool;
-    public int amountToPool;
 
     [SerializeField] Transform pooledObjectParent;
 
@@ -17,16 +16,6 @@ public class ObjectPooling : MonoBehaviour
         if(objectPooling == null)
         {
             objectPooling = this;
-        }
-    }
-
-    private void Start()
-    {
-        for(int i = 0; i < amountToPool; i++)
-        {
-            GameObject obj = Instantiate(objectToPool,pooledObjectParent);
-            obj.SetActive(false);
-            objectPoolList.Add(obj);
         }
     }
 
@@ -40,5 +29,13 @@ public class ObjectPooling : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public GameObject GetNewObject()
+    {
+        GameObject obj = Instantiate(objectToPool, pooledObjectParent);
+        obj.SetActive(false);
+        objectPoolList.Add(obj);
+        return obj;
     }
 }

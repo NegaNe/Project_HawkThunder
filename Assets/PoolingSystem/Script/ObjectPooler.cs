@@ -24,5 +24,10 @@ public class ObjectPooler : MonoBehaviour
             obj.transform.position = spawnPoint.transform.position;
             obj.SetActive(true);
         }
+        else
+        {
+            GameObject newobj = ObjectPooling.objectPooling.GetNewObject();
+            newobj.SetActive(true);
+        }
     }
 }
