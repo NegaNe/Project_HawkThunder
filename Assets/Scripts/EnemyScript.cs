@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-
+  public float Health;
+  public float Damage;
+  public float Speed;
+  
 
 }

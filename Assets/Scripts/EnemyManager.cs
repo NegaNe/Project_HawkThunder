@@ -8,18 +8,39 @@ public class EnemyManager : MonoBehaviour
 {
     public GameObject[] Enemies;
     [SerializeField]
+    private Transform[] spawnPoints;
+    [SerializeField]
+    private float SpawnInterval;
 
     void Start()
     {
-        InvokeRepeating(nameof(EnemySpawner), 0, 1f);
+        StartCoroutine(nameof(EnemySpawner));
     }
 
-    private void EnemySpawner()
+    private IEnumerator EnemySpawner()
     {
-    float[] numbers = { -2.5f, 2f, 2.5f };
+        while(true)
+        {
+            SpawnEnemy();
+            yield return new WaitForSeconds(SpawnInterval);
+        }
 
-    GameObject SpawnedEnemies = Instantiate(Enemies[Random.Range(0, Enemies.Length)], new Vector3(numbers[Random.Range(0, numbers.Length)], 0f, 0f), Quaternion.identity);
-    
     }
+
+    private void SpawnEnemy()
+    {
+    GameObject enemy = ObjectPooling.objectPooling.GetNewObject();
+    
+    if(enemy == null)
+        {
+        enemy = ObjectPooling.objectPooling.GetNewObject();
+        }
+    Transform EnemySpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+
+    enemy.transform.position = EnemySpawnPoint.position;
+    enemy.SetActive(true);
+    }
+
+
 
 }

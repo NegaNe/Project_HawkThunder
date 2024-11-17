@@ -9,10 +9,7 @@ public class ObjectPooler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            PoolObject();
-        }
+        
     }
 
     public void PoolObject()

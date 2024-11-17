@@ -9,7 +9,7 @@ public class ObjectPooling : MonoBehaviour
     private List<GameObject> objectPoolList = new List<GameObject>();
     [SerializeField] GameObject objectToPool;
 
-    [SerializeField] Transform pooledObjectParent;
+    // [SerializeField] Transform pooledObjectParent;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class ObjectPooling : MonoBehaviour
 
     public GameObject GetNewObject()
     {
-        GameObject obj = Instantiate(objectToPool, pooledObjectParent);
+        GameObject obj = Instantiate(objectToPool, transform);
         obj.SetActive(false);
         objectPoolList.Add(obj);
         return obj;
