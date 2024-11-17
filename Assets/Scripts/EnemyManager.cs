@@ -24,23 +24,19 @@ public class EnemyManager : MonoBehaviour
             SpawnEnemy();
             yield return new WaitForSeconds(SpawnInterval);
         }
-
     }
 
     private void SpawnEnemy()
     {
-    GameObject enemy = ObjectPooling.objectPooling.GetNewObject();
+    GameObject enemy = ObjectPooling.objectPooling.GetObject();
     
-    if(enemy == null)
+    if(enemy != null)
         {
-        enemy = ObjectPooling.objectPooling.GetNewObject();
+        Transform EnemySpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        enemy.transform.position = EnemySpawnPoint.position;
         }
-    Transform EnemySpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-    enemy.transform.position = EnemySpawnPoint.position;
-    enemy.SetActive(true);
+
     }
-
-
 
 }

@@ -10,5 +10,13 @@ public class EnemyScript : MonoBehaviour
   public float Damage;
   public float Speed;
   
+  public void ResetObject()
+  {
+    Health = 100;
+  }
+  void OnDisable()
+  {
+    ObjectPooling.objectPooling.ReturnToPool(gameObject);
+  }
 
 }
