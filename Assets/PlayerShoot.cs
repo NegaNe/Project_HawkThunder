@@ -11,7 +11,7 @@ public class PlayerShoot : MonoBehaviour
 
     float ShootDelay = 0.1f;
 
-    private int damage;
+    private int damage = 1;
 
     public TMP_Text damageText;
     void Start()
