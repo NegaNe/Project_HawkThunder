@@ -10,15 +10,16 @@ public class EnemySpawner : MonoBehaviour
 
     public int spawnDelay;
 
-    [ContextMenu("Start Spawn Enemy")]
-    void StartSpawnEnemy()
+    // [ContextMenu("Start Spawn Enemy")]
+
+    void Start()
     {
         StartCoroutine(EnemySpawnCoroutine());
     }
 
     private IEnumerator EnemySpawnCoroutine()
     {
-        
+        yield return new WaitForSeconds(Random.Range(1, 3));
 
         while (true)
         {
@@ -34,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
                 GameObject newobj = pool.GetNewObject();
                 newobj.SetActive(true);
             }
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(Random.Range(2, 4));
         }
     }
 

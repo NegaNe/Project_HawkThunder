@@ -1,27 +1,21 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float speed = 5f;
-    [SerializeField] int duration = 4;
+    float speed;
 
     private void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        
+        transform.Translate(Vector3.back * Random.Range(2, 8) * Time.deltaTime);
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(DisableObject(duration));
+    private void OnTriggerEnter(Collider other) {
+        Destroy(gameObject);
     }
 
-    private IEnumerator DisableObject(int duration)
-    {
-        yield return new WaitForSeconds(duration);
 
-        gameObject.SetActive(false);
-    }
 }
