@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    [SerializeField] float Speed;
     private float AddPwr = 1;
     public TMP_Text PwrUpText;
     public enum PowerUpType { 
@@ -37,32 +39,42 @@ public class PowerUp : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        IncreasePower();
-        DecreasePower();
+    private void FixedUpdate() {
+        transform.Translate(Vector3.back * Speed * Time.fixedDeltaTime);
+        
     }
+
+    // Update is called once per frame
 
     private void IncreasePower()
     {
-
+        AddPwr += 1;
+        PwrUpText.text =  AddPwr.ToString() +" Power";
     }
     private void DecreasePower()
     {
-            PwrUpText.text =  AddPwr.ToString() +" Power";
+        AddPwr -= 1;
+        PwrUpText.text =  AddPwr.ToString() +" Power";
     }
 
     private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.CompareTag("Bullet"))
         {
-            
+            if(powerUpType == PowerUpType.IncreasePwr)
+            {
+                IncreasePower();
+            }
+            else if(powerUpType == PowerUpType.DecreasePwr)
+            {
+                DecreasePower();
+            }
         }
 
         if(other.gameObject.CompareTag("Player"))
         {
-            
+            // konekin ke player buat nambah powerup (dmg) 
+            Destroy(gameObject);
         }
     }
 }
