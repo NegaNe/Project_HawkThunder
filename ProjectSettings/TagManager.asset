@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Pemain
+  - Plane
+  - Killed
   layers:
   - Default
   - TransparentFX

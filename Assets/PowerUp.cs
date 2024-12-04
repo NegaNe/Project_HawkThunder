@@ -41,7 +41,7 @@ public class PowerUp : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        transform.Translate(Vector3.back * Speed * Time.fixedDeltaTime);
+        transform.Translate(Vector3.back * 4 * Time.fixedDeltaTime);
         
     }
 

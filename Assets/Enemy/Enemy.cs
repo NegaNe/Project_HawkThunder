@@ -7,13 +7,14 @@ public class Enemy : MonoBehaviour
 {
     float speed;
 
-    private void Update()
+    private void FixedUpdate()
     {
         
-        transform.Translate(Vector3.back * Random.Range(2, 8) * Time.deltaTime);
+        transform.Translate(Vector3.back * 4 * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter(Collider other) {
+    if( other.gameObject.tag == "Player" || other.gameObject.tag == "Killer")
         gameObject.SetActive(false);
     }
 
