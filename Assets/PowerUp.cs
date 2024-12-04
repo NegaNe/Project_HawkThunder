@@ -13,6 +13,8 @@ public class PowerUp : MonoBehaviour
         DecreasePwr
     }
     public PowerUpType powerUpType;
+    [SerializeField] float maxPower;
+
     void Start()
     {
         Renderer renderer = GetComponent<Renderer>();
@@ -75,12 +77,21 @@ public class PowerUp : MonoBehaviour
         {
             // konekin ke player buat nambah powerup (dmg)
 
-            other.GetComponent<PlayerShoot>().bulletDamage += AddPwr;
+            PlayerShoot playerShoot = other.GetComponent<PlayerShoot>();
 
-            if(other.GetComponent<PlayerShoot>().bulletDamage <= 0)
+            playerShoot.bulletDamage += AddPwr;
+
+            if (playerShoot.bulletDamage >= maxPower)
             {
-                other.GetComponent<PlayerShoot>().bulletDamage = 1;
+                playerShoot.bulletDamage = maxPower;
             }
+
+            if (playerShoot.bulletDamage <= 0)
+            {
+                playerShoot.bulletDamage = 1;
+            }
+
+            playerShoot.damageText.text = "Damage : " + playerShoot.bulletDamage.ToString();
 
             gameObject.SetActive(false);
         }

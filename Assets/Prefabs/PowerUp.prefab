@@ -122,6 +122,7 @@ MonoBehaviour:
   Speed: 3
   PwrUpText: {fileID: 7978598586972534109}
   powerUpType: 0
+  maxPower: 100
 --- !u!1 &2500909620974962051
 GameObject:
   m_ObjectHideFlags: 0

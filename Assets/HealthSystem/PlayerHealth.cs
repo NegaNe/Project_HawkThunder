@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
     public void Inizialize()
     {
         currentPlayerHealth = playerHealth;
-        healthText.text = currentPlayerHealth.ToString();
+        healthText.text = "HP :" + currentPlayerHealth.ToString();
     }
 
 
@@ -33,6 +33,6 @@ public class PlayerHealth : MonoBehaviour
     {
         currentPlayerHealth -= damage;
 
-        healthText.text = currentPlayerHealth.ToString();
+        healthText.text = "HP :" + currentPlayerHealth.ToString();
     }
 }

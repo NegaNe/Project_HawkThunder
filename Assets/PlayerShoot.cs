@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class PlayerShoot : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -12,9 +12,12 @@ public class PlayerShoot : MonoBehaviour
     float ShootDelay = 0.1f;
 
     private int damage;
+
+    public TMP_Text damageText;
     void Start()
     {
         InvokeRepeating(nameof(ShootBullet), 0f, ShootDelay);
+        damageText.text = "Damage : " + damage.ToString();
     }
 
     void ShootBullet()
@@ -28,6 +31,8 @@ public class PlayerShoot : MonoBehaviour
         }
 
         bullet.GetComponent<Bullet>().damage = bulletDamage;
+
+
         Destroy(bullet, 0.2f);
     }
 
@@ -36,5 +41,6 @@ public class PlayerShoot : MonoBehaviour
     {
         
     }
+
 }
 

@@ -47,21 +47,11 @@ public class EnemySpawner : MonoBehaviour
             {
                 obj.transform.position = spawnPoint.transform.position;
                 obj.SetActive(true);
-                /*if(obj.gameObject.name == "EnemyPlane")
-                {
-                    obj.GetComponent<EnemyHealth>().enemyHealth = givenEnemyHealth;
-                }*/
-                
-
             }
             else
             {
                 GameObject newobj = pool.GetNewObject();
                 newobj.SetActive(true);
-                /*if (newobj.gameObject.name == "EnemyPlane")
-                {
-                    newobj.GetComponent<EnemyHealth>().enemyHealth = givenEnemyHealth;
-                }*/
             }
             yield return new WaitForSeconds(spawnDelay);
         }
