@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int playerHealth = 100;
     public int currentPlayerHealth;
 
+    public TMP_Text healthText;
     private void Start()
     {
         Inizialize();
@@ -15,28 +17,13 @@ public class PlayerHealth : MonoBehaviour
     public void Inizialize()
     {
         currentPlayerHealth = playerHealth;
+        healthText.text = "HP :" + currentPlayerHealth.ToString();
     }
 
-    [ContextMenu("Player Damage")]
-    private void TesterDamage()
+
+    private void OnTriggerEnter(Collider collision)
     {
-        if (playerHealth < 0)
-        {
-            return;
-        }
-
-        TakeDamage(10);
-
-        if(playerHealth < 10)
-        {
-            playerHealth = 0;
-        }
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Plane")
         {
             TakeDamage(10);
         }
@@ -44,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        playerHealth -= damage;
+        currentPlayerHealth -= damage;
+
+        healthText.text = "HP :" + currentPlayerHealth.ToString();
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner enemySpawner;
+
     [SerializeField] ObjectPooling pool;
     public Transform spawnPoint;
 
@@ -15,8 +17,8 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Health System")]
     public int defaultHealth = 10;
-
-    public int givenEnemyHealth;
+    
+    public static int givenEnemyHealth = 10;
 
     public int enemyHealthDelayIncrease = 5;
 
@@ -45,23 +47,11 @@ public class EnemySpawner : MonoBehaviour
             {
                 obj.transform.position = spawnPoint.transform.position;
                 obj.SetActive(true);
-                EnemyHealth enemyHealth = obj.GetComponent<EnemyHealth>();
-
-                if(enemyHealth != null)
-                {
-                    enemyHealth.enemyHealth = givenEnemyHealth;
-                }
             }
             else
             {
                 GameObject newobj = pool.GetNewObject();
                 newobj.SetActive(true);
-                EnemyHealth enemyHealth = newobj.GetComponent<EnemyHealth>();
-
-                if (enemyHealth != null)
-                {
-                    enemyHealth.enemyHealth = givenEnemyHealth;
-                }
             }
             yield return new WaitForSeconds(spawnDelay);
         }
