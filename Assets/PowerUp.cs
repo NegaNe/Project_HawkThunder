@@ -79,5 +79,12 @@ public class PowerUp : MonoBehaviour
 
             gameObject.SetActive(false);
         }
+
+    }
+
+    private void OnDisable()
+    {
+        AddPwr = 1;
+        PwrUpText.text = AddPwr.ToString() + " Power";
     }
 }

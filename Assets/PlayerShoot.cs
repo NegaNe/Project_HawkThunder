@@ -21,6 +21,12 @@ public class PlayerShoot : MonoBehaviour
     {
         GameObject bullet = Instantiate(Bullet, transform.position, Bullet.transform.rotation);
         bullet.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20, ForceMode.Impulse);
+
+        if(damage <= 0)
+        {
+            damage = 1;
+        }
+
         bullet.GetComponent<Bullet>().damage = bulletDamage;
         Destroy(bullet, 0.2f);
     }

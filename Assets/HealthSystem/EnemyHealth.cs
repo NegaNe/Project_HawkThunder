@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyHealth : MonoBehaviour
 {
     public float enemyHealth;
-    public float currentHealth;
+    
+    public TMP_Text HPText;
 
     private void OnEnable()
     {
-        currentHealth = enemyHealth;
+        enemyHealth = EnemySpawner.givenEnemyHealth;
+
+        HPText.text = enemyHealth.ToString();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -17,16 +21,21 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             //TakeDamage(10);
-            
-            currentHealth -= collision.gameObject.GetComponent<Bullet>().GetDamage();
 
-            Debug.Log(currentHealth);
+            enemyHealth -= collision.gameObject.GetComponent<Bullet>().GetDamage();
 
-            if (currentHealth <= 0)
+            HPUpdate();
+
+            if (enemyHealth <= 0)
             {
                 gameObject.SetActive(false);
             }
         }
+    }
+
+    private void HPUpdate()
+    {
+        HPText.text = enemyHealth.ToString();
     }
 
 }
