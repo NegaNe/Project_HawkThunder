@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "Plane")
         {
-            TakeDamage(10);
+            TakeDamage(30);
         }
     }
 
