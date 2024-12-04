@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 
