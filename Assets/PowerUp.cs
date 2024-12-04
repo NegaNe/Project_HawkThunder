@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -59,6 +58,7 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
+
         if(other.gameObject.CompareTag("Bullet"))
         {
             if(powerUpType == PowerUpType.IncreasePwr)
@@ -73,8 +73,11 @@ public class PowerUp : MonoBehaviour
 
         if(other.gameObject.CompareTag("Player"))
         {
-            // konekin ke player buat nambah powerup (dmg) 
-            Destroy(gameObject);
+            // konekin ke player buat nambah powerup (dmg)
+
+            other.GetComponent<PlayerShoot>().bulletDamage += AddPwr;
+
+            gameObject.SetActive(false);
         }
     }
 }

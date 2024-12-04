@@ -4,32 +4,29 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int enemyHealth = 50;
-    public int enemyCurrentHealth;
+    public float enemyHealth;
+    public float currentHealth;
 
     private void OnEnable()
     {
-        enemyCurrentHealth = enemyHealth;
+        currentHealth = enemyHealth;
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            TakeDamage(10); 
+            //TakeDamage(10);
             
-            if (enemyCurrentHealth <= 0)
+            currentHealth -= collision.gameObject.GetComponent<Bullet>().GetDamage();
+
+            Debug.Log(currentHealth);
+
+            if (currentHealth <= 0)
             {
                 gameObject.SetActive(false);
             }
         }
-
-        
     }
 
-    public void TakeDamage(int damage)
-    {
-        enemyCurrentHealth -= damage;
-    }
 }

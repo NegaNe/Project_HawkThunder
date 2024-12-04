@@ -8,9 +8,22 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody rb;
 
+    public float damage;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Collider playerCollider = player.GetComponent<Collider>();
+            Collider bulletCollider = GetComponent<Collider>();
+
+            if (playerCollider != null && bulletCollider != null)
+            {
+                Physics.IgnoreCollision(bulletCollider, playerCollider);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -21,6 +34,11 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         gameObject.SetActive(false);
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 
 }
