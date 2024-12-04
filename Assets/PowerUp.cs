@@ -77,6 +77,11 @@ public class PowerUp : MonoBehaviour
 
             other.GetComponent<PlayerShoot>().bulletDamage += AddPwr;
 
+            if(other.GetComponent<PlayerShoot>().bulletDamage <= 0)
+            {
+                other.GetComponent<PlayerShoot>().bulletDamage = 1;
+            }
+
             gameObject.SetActive(false);
         }
 
